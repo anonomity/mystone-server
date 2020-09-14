@@ -7,7 +7,8 @@ import {routes } from "./routes/project";
 const app = express()
 
 const bodyParser = require('body-parser');
-
+import dotenv from 'dotenv';
+dotenv.config();
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
@@ -19,7 +20,7 @@ app.use((req, res, next) => {
 
 app.use(routes)
 
-mongoose.connect("mongodb+srv://Jackie:B5qAmCst4vNvUasT@cluster0-dbmjj.mongodb.net/projects?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO_URI)
     .then(response => {
         console.log(response)
     })
